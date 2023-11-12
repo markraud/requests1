@@ -1,2 +1,2 @@
-# webscrap1
+# webscraper1
 web scraper
