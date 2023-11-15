@@ -1,19 +1,17 @@
 import requests
 import json
 
-baseUrl = "http://api.exchangeratesapi.io/v1/latest?access_key=b5af89a7098ae2d487a95f40fb24007e"
-paramURL = baseUrl + "&symbols=GBP" + "&" + "base=EUR"  #had to use EUR as base as all other currencies are only available for paid subscription
-data = requests.get(paramURL).json()
+# histDate = '/2016-01-26'
 
-eurToGbp = data["rates"]["GBP"]
-print(f'1 GBP in EUR = {eurToGbp}')
+accessKey = 'b5af89a7098ae2d487a95f40fb24007e'
+baseUrl = f"http://api.exchangeratesapi.io/v1/"
+# paramURL = f"{baseUrl}{dateVal}?access_key={accessKey}"
+timePeriod = f"{baseUrl}timeseries?access_key={accessKey}&start_date=2017-04-26&end_date=2018-04-26&base=EUR&symbols=GBP"
+response = requests.get(timePeriod)
+data = response.json()
+print(response.status_code)
+print(json.dumps(data, indent=4, sort_keys=True))
 
 
-
-# print(json.dumps(response.json(), indent=4, sort_keys=True))
-# print(response.json().keys())
-# print(paramURL)
-
-# print(f'here is the base = {data["base"]}')
-# print(f'here is the base = {data["date"]}')
-# print(f'here is the base = {data["rates"]}')
+# eurToGbp = data["rates"]["GBP"]
+# print(f'1 GBP in EUR = {eurToGbp}')
